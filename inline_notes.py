@@ -189,12 +189,12 @@ def process_file(input_path: Path, output_path: Path) -> bool:
         with open(input_path, 'rb') as f:
             content = f.read()
         
-        # Remove UTF-8 BOM if present
+        # Remove UTF-8 BOM if present (BOM is 3 bytes: \xef\xbb\xbf)
         if content.startswith(b'\xef\xbb\xbf'):
             content = content[3:]
         
         # Parse XML from bytes
-        parser = etree.XMLParser(remove_blank_text=False, encoding='utf-8')
+        parser = etree.XMLParser(remove_blank_text=False)
         root = etree.fromstring(content, parser)
         
         # Extract endnotes from back
