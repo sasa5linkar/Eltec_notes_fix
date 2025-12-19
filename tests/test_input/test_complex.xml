@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="TEST002" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Test Document - Complex Cases</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Test file</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Test file for complex endnote cases</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="chapter" xml:id="TEST002_C1">
+                <head>Chapter with Complex Notes</head>
+                <p>Reference to a note with complex content<ref target="#TEST002_N1"/>.</p>
+                <p>This note is never referenced<ref target="#TEST002_N2"/> but this one is<ref target="#TEST002_N3"/>.</p>
+                <p>Out of order reference<ref target="#TEST002_N3"/> appears before<ref target="#TEST002_N2"/>.</p>
+            </div>
+        </body>
+        <back>
+            <div type="notes" xml:id="TEST002_B1">
+                <note xml:id="TEST002_N1">Complex note with <hi rend="italic">italic</hi> and <foreign xml:lang="fr">foreign</foreign> text.</note>
+                <note xml:id="TEST002_N2">Simple note two.</note>
+                <note xml:id="TEST002_N3">Note three with multiple elements: <hi>bold</hi> and <ref target="http://example.com">link</ref>.</note>
+                <note xml:id="TEST002_N4">This note is never referenced and should be removed.</note>
+            </div>
+        </back>
+    </text>
+</TEI>
