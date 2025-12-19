@@ -7,7 +7,6 @@ and validates the results.
 """
 
 import sys
-import os
 from pathlib import Path
 from lxml import etree
 

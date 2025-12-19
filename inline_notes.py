@@ -13,11 +13,10 @@ Author: Generated for ELTeC notes fix project
 """
 
 import sys
-import os
 from pathlib import Path
 from lxml import etree
 from copy import deepcopy
-from typing import Dict, List, Optional
+from typing import Dict
 
 
 # TEI namespace
@@ -76,10 +75,6 @@ def create_inline_note(note_element: etree._Element) -> etree._Element:
     # Use deepcopy to ensure we don't move elements, allowing multiple references
     for child in note_element:
         inline_note.append(deepcopy(child))
-    
-    # Copy tail if present (text after last child element)
-    if len(note_element) > 0 and note_element[-1].tail:
-        inline_note[-1].tail = note_element[-1].tail
     
     return inline_note
 
