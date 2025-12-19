@@ -22,6 +22,7 @@ Simply run the provided batch file which will:
 1. Create a virtual environment
 2. Install dependencies
 3. Run the transformation
+4. Write a run log (`Output\\run.log`) and per-file summary table (`Output\\run_summary.csv`)
 
 ```batch
 setup_and_run.bat
