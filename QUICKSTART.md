@@ -4,7 +4,7 @@ This guide will help you quickly get started with the TEI Endnote Inlining Trans
 
 ## Prerequisites
 
-- Python 3.7 or higher installed
+- Python 3.8 or higher installed
 - Input TEI XML files in the `Input` folder
 
 ## Quick Start (Windows)

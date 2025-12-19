@@ -11,7 +11,7 @@ The script performs an **endnote inlining transformation** on TEI XML documents:
 
 ## Requirements
 
-- Python 3.7 or higher
+- Python 3.8 or higher
 - lxml library (for XML processing)
 
 ## Installation
