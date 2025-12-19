@@ -211,6 +211,74 @@ def test_mixed_references():
     return passed
 
 
+def test_bom_handling():
+    """Test file with UTF-8 BOM - should handle BOM correctly."""
+    print("Test 5: UTF-8 BOM Handling")
+    print("-" * 50)
+    
+    input_file = Path("tests/test_input/test_bom.xml")
+    output_file = Path("tests/test_output/test_bom.xml")
+    
+    # Verify input file has BOM
+    with open(input_file, 'rb') as f:
+        input_content = f.read()
+    
+    has_input_bom = input_content.startswith(b'\xef\xbb\xbf')
+    print(f"  Input file has BOM: {has_input_bom} (expected: True)")
+    
+    if not has_input_bom:
+        print("  FAILED: Test file should have BOM")
+        return False
+    
+    # Process the file
+    success = inline_notes.process_file(input_file, output_file)
+    
+    if not success:
+        print("  FAILED: Processing failed")
+        return False
+    
+    # Verify output file does not have BOM
+    with open(output_file, 'rb') as f:
+        output_content = f.read()
+    
+    has_output_bom = output_content.startswith(b'\xef\xbb\xbf')
+    print(f"  Output file has BOM: {has_output_bom} (expected: False)")
+    
+    # Verify output starts with XML declaration
+    starts_with_xml = output_content.startswith(b'<?xml')
+    print(f"  Output starts with XML declaration: {starts_with_xml} (expected: True)")
+    
+    # Parse output and check results
+    tree = etree.parse(str(output_file))
+    root = tree.getroot()
+    
+    # Check that inline notes were created
+    inline_notes_count = count_elements(root, '//tei:text//tei:note[@place="inline"]')
+    
+    # Check that back/div[@type="notes"] was removed
+    notes_div_count = count_elements(root, '//tei:back/tei:div[@type="notes"]')
+    
+    # Check that back element was removed (since it only had notes)
+    back_count = count_elements(root, '//tei:back')
+    
+    print(f"  Inline notes created: {inline_notes_count} (expected: 2)")
+    print(f"  Notes div remaining: {notes_div_count} (expected: 0)")
+    print(f"  Back element remaining: {back_count} (expected: 0)")
+    
+    passed = (
+        has_input_bom and
+        not has_output_bom and
+        starts_with_xml and
+        inline_notes_count == 2 and
+        notes_div_count == 0 and
+        back_count == 0
+    )
+    
+    print(f"  Result: {'PASSED' if passed else 'FAILED'}")
+    print()
+    return passed
+
+
 def main():
     """Run all tests."""
     print("=" * 70)
@@ -227,6 +295,7 @@ def main():
     results.append(("Complex Cases", test_complex_cases()))
     results.append(("No Notes", test_no_notes()))
     results.append(("Mixed References", test_mixed_references()))
+    results.append(("BOM Handling", test_bom_handling()))
     
     # Summary
     print("=" * 70)

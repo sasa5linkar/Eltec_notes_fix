@@ -185,16 +185,24 @@ def process_file(input_path: Path, output_path: Path) -> bool:
         True if processing succeeded, False otherwise
     """
     try:
-        # Parse XML file
-        parser = etree.XMLParser(remove_blank_text=False, encoding='utf-8')
-        tree = etree.parse(str(input_path), parser)
-        root = tree.getroot()
+        # Read file as binary and strip BOM if present
+        with open(input_path, 'rb') as f:
+            content = f.read()
+        
+        # Remove UTF-8 BOM if present (BOM is 3 bytes: \xef\xbb\xbf)
+        if content.startswith(b'\xef\xbb\xbf'):
+            content = content[3:]
+        
+        # Parse XML from bytes
+        parser = etree.XMLParser(remove_blank_text=False)
+        root = etree.fromstring(content, parser)
         
         # Extract endnotes from back
         notes = get_notes_from_back(root)
         
         if not notes:
             # No endnotes found, just copy the file
+            tree = etree.ElementTree(root)
             tree.write(
                 str(output_path),
                 encoding='utf-8',
@@ -214,6 +222,7 @@ def process_file(input_path: Path, output_path: Path) -> bool:
         remove_notes_div(root)
         
         # Write output file
+        tree = etree.ElementTree(root)
         tree.write(
             str(output_path),
             encoding='utf-8',

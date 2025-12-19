@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="TEST_BOM" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Test Document - BOM Handling</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Test file</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Test file with UTF-8 BOM for BOM handling verification</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="chapter" xml:id="TEST_BOM_C1">
+                <head>Chapter 1</head>
+                <p>This is a paragraph with a reference to note one<ref target="#TEST_BOM_N1"/>.</p>
+                <p>Another paragraph with note two<ref target="#TEST_BOM_N2"/>.</p>
+            </div>
+        </body>
+        <back>
+            <div type="notes" xml:id="TEST_BOM_B1">
+                <note xml:id="TEST_BOM_N1">This is the content of note one.</note>
+                <note xml:id="TEST_BOM_N2">This is note two.</note>
+            </div>
+        </back>
+    </text>
+</TEI>
