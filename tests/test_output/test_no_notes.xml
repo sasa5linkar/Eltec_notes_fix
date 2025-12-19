@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="TEST003" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Test Document - No Endnotes</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Test file</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Test file without endnotes</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="chapter" xml:id="TEST003_C1">
+                <head>Chapter Without Notes</head>
+                <p>This is a simple paragraph with no references.</p>
+                <p>Another paragraph without any notes.</p>
+            </div>
+        </body>
+        <back>
+            <div type="liminal" xml:id="TEST003_B1">
+                <p>Some other back matter that should not be removed.</p>
+            </div>
+        </back>
+    </text>
+</TEI>

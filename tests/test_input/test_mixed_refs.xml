@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="TEST004" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Test Document - Mixed References</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Test file</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Test file with mixed reference types</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="chapter" xml:id="TEST004_C1">
+                <head>Chapter with Mixed References</head>
+                <p>Reference to endnote<ref target="#TEST004_N1"/> and external link<ref target="http://example.com">here</ref>.</p>
+                <p>Another endnote ref<ref target="#TEST004_N2"/> followed by text.</p>
+                <note place="inline">This is already an inline note and should not be touched.</note>
+            </div>
+        </body>
+        <back>
+            <div type="notes" xml:id="TEST004_B1">
+                <note xml:id="TEST004_N1">Endnote one.</note>
+                <note xml:id="TEST004_N2">Endnote two.</note>
+            </div>
+            <div type="liminal" xml:id="TEST004_B2">
+                <p>Other back matter that should remain.</p>
+            </div>
+        </back>
+    </text>
+</TEI>

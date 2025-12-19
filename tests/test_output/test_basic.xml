@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="TEST001" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Test Document - Basic Endnote Inlining</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Test file</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Test file for endnote inlining transformation</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="chapter" xml:id="TEST001_C1">
+                <head>Chapter 1</head>
+                <p>This is a paragraph with a reference to note one<note place="inline">This is the content of note one.</note>.</p>
+                <p>This paragraph has a reference to note two<note place="inline">This is note two with <hi>emphasis</hi> markup.</note> in the middle.</p>
+                <p>Multiple references: first<note place="inline">This is the content of note one.</note> and second<note place="inline">This is note two with <hi>emphasis</hi> markup.</note>.</p>
+            </div>
+        </body>
+        </text>
+</TEI>
